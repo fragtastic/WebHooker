@@ -1,0 +1,16 @@
+{
+	"username/some-repository": {
+		"secret": "yoursecretkey",
+		"push": {
+			"master": {
+				"command": ["sh", "-e", "example.sh"]
+			},
+			"development": {
+				"command": ["./example.sh"]
+			},
+			"config": {
+				"command": ["service", "nginx", "reload"]
+			}
+		}
+	}
+}
