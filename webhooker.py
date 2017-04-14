@@ -1,7 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import hashlib, hmac, json, os, sys
-from http.server import HTTPServer, BaseHTTPRequestHandler
+try:
+    from http.server import HTTPServer, BaseHTTPRequestHandler
+except:
+    from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 from subprocess import check_output
 
 
