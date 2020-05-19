@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-import hashlib, hmac, json, os, sys
+import hashlib
+import hmac
+import json
 try:
     from http.server import HTTPServer, BaseHTTPRequestHandler
 except:
@@ -40,14 +42,14 @@ class WebHooker(BaseHTTPRequestHandler):
         if event == 'ping':
             return self.send_complex_response(200, 'Success')
         elif event == 'push':
-                branch = payloadj['ref'].split('/')[2]
-                command = config[repository][event][branch]['command']
-                try:
-                    body = check_output(command).decode('utf-8')
-                    print(f'{command}: {body}')
-                    return self.send_complex_response(200, 'Success', body)
-                except Exception as e:
-                    return self.send_complex_response(500, e)
+            branch = payloadj['ref'].split('/')[2]
+            command = config[repository][event][branch]['command']
+            try:
+                body = check_output(command).decode('utf-8')
+                print(f'{command}: {body}')
+                return self.send_complex_response(200, 'Success', body)
+            except Exception as e:
+                return self.send_complex_response(500, e)
         else:
             return self.send_complex_response(500, 'Unsupported event')
 
